@@ -1,34 +1,35 @@
 PODS:
   - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
   - FSPagerView (0.8.3)
   - MJRefresh (3.2.2)
   - SDWebImage (5.3.1):
     - SDWebImage/Core (= 5.3.1)
   - SDWebImage/Core (5.3.1)
-  - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage
   - FSPagerView
   - MJRefresh
   - SDWebImage
-  - SnapKit
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireImage
     - FSPagerView
     - MJRefresh
     - SDWebImage
-    - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   MJRefresh: 72a46ecaa2a0feaf48fc5198dff95f25f8bb27c6
   SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 218ce67c2404e98f22ee1f39d1105c35587ac25b
+PODFILE CHECKSUM: 01084b2bb75d58fe8c42754bfdb65b5a21292da4
 
 COCOAPODS: 1.8.4
