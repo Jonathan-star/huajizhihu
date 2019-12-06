@@ -23,71 +23,13 @@
 import Alamofire
 import UIKit
 
-  
-
-//// MARK: - dataGet
-//struct dataGet: Codable {
-//    let date: String
-//    let stories, topStories: [Story]
-//
-//    enum CodingKeys: String, CodingKey {
-//        case date, stories
-//        case topStories = "top_stories"
-//    }
-//}
-//
-////
-//// To parse values from Alamofire responses:
-////
-////   Alamofire.request(url).responseStory { response in
-////     if let story = response.result.value {
-////       ...
-////     }
-////   }
-//
-//// MARK: - Story
-//struct Story: Codable {
-//    let imageHue, title: String
-//    let url: String
-//    let hint, gaPrefix: String
-//    let images: [String]?
-//    let type, id: Int
-//    let image: String?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case imageHue
-//        case title, url, hint
-//        case gaPrefix
-//        case images, type, id, image
-//    }
-//}
-//
-//// MARK: - Helper functions for creating encoders and decoders
-//
-//func newJSONDecoder() -> JSONDecoder {
-//    let decoder = JSONDecoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        decoder.dateDecodingStrategy = .iso8601
-
-//    }
-//    return decoder
-//}
-//
-//func newJSONEncoder() -> JSONEncoder {
-//    let encoder = JSONEncoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        encoder.dateEncodingStrategy = .iso8601
-//    }
-//    return encoder
-//}
-
 struct DataGet: Codable {
     let date: String?
     let stories, topStories: [Story]?
 
     enum CodingKeys: String, CodingKey {
         case date, stories
-        case topStories
+        case topStories = "top_stories"
     }
 }
 
@@ -222,6 +164,7 @@ func newJSONEncoder() -> JSONEncoder {
     if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
         encoder.dateEncodingStrategy = .iso8601
     }
+    
     return encoder
 }
 
@@ -235,12 +178,23 @@ class alama {
                 let datas = try JSONDecoder().decode(DataGet.self, from: data.data!)
                 print(datas)
                 titles.removeAll()
+                hints.removeAll()
+                imageUrls.removeAll()
                 for story in datas.stories! {
                     
                     titles.append(story.title!)
                     hints.append(story.hint!)
-                    imageUrls.append(story.image ?? "https://pic4.zhimg.com/v2-0fc41a50f15b38e16b630cda1add7fcf.jpg")
+                    imageUrls.append(story.images!)
+                    storyUrl.append(story.url!)
                     someclosure(titles)
+                }
+                for topStory in datas.topStories! {
+                    if let tophint = topStory.hint {
+                        topHints.append(tophint)
+                    }
+                    topTitles.append(topStory.title!)
+                    topImageUrls.append(topStory.image!)
+
                 }
             } catch {
                 print ("error")

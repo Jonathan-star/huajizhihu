@@ -9,7 +9,7 @@
 import Foundation
 import MJRefresh
 import Alamofire
-//import FSPagerView
+
 import UIKit
 
 class Comments: UIViewController{
