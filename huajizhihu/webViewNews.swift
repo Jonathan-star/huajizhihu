@@ -31,7 +31,7 @@ class news: UIViewController {
 //        item.append(UITabBarItem.init(title: "", image: UIImage(systemName: "bubble.left"), tag: 0))
 //        tabbar.setItems(item, animated: true)
 //
-//MARK: 长评还没有写= 3 =
+//MARK:长评还没有写= 3 =
 //        view.addSubview(tabbar)
         
 //        let vc1:UIViewController = ViewController()

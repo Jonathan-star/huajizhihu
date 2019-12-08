@@ -20,9 +20,9 @@ var topImageUrls = [String]()
 var topHints = [String]()
 var topStoryUrls = [String]()
 var topImages = [UIImage]()
-var imageArray = [UIImage]()
-var positionArray = [CGFloat]()
-var titleArray = [String]()
+//var imageArray = [UIImage]()
+//var positionArray = [CGFloat]()
+//var titleArray = [String]()
 
 
 
@@ -42,10 +42,9 @@ class ViewController: UIViewController {
 
     var tableView = UITableView()
     
-    let pics = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
+    let pics = UIScrollView()
     
-    let myScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
- 
+     
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -99,6 +98,8 @@ class ViewController: UIViewController {
        
         navigationController?.navigationBar.barTintColor = .green
         navigationController?.navigationBar.tintColor = .white
+        navigationItem.title = "FUNNY DAILY"
+        ///日期，觉得比较丑就注了
 //        let date = Date.init()
 //        let timeFormatter = DateFormatter.init()
 //        timeFormatter.dateFormat="dd\nMM月"
@@ -109,8 +110,8 @@ class ViewController: UIViewController {
 //        dateLabel.numberOfLines = 0
 //        dateLabel.frame = CGRect(x: 20, y: 200, width: 100, height: 60)
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
-//
-        navigationItem.title = "FUNNY DAILY"
+
+        ///字体，等会设置
 //        if let barFont = UIFont(name: "ChalkboardSE-Bold" , size: 24){
 //        }
 
@@ -123,10 +124,33 @@ class ViewController: UIViewController {
         loadData()
         loadSubtitle()
         loadNewsImage()
-        loadScrollView()
-        loadScrollView()
+        
         tableView.reloadData()
         print(imageUrls)
+        
+        pics.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6)
+        pics.contentSize = CGSize(width: UIScreen.main.bounds.width * 5, height: pics.frame.height)
+        pics.isDirectionalLockEnabled = true
+        pics.isPagingEnabled = true
+        pics.alwaysBounceVertical = false
+        pics.showsVerticalScrollIndicator = false
+        pics.showsHorizontalScrollIndicator = false
+        pics.delegate = self
+        self.view.addSubview(pics)
+        pics.addSubview(imageView)
+        if topImageUrls.count - 1 > 0 {
+            for i in 0...topImageUrls.count - 1 {
+                
+                imageView.sd_setImage(with: URL(string: topImageUrls[i]), placeholderImage: UIImage(named: "\(i)"))
+            }
+            
+        }else {
+            
+        }
+        
+
+        
+        
         
     }
     
@@ -170,7 +194,7 @@ class ViewController: UIViewController {
     
 
 //MARK: -搞了一点cell
-extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
+extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return titles.count
@@ -215,36 +239,6 @@ extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-    //    MARK: -scrollView设置
-    //
-    func loadScrollView() {
-        myScrollView.contentSize.width = myScrollView.frame.width * CGFloat(imageArray.count)
-        myScrollView.isPagingEnabled = true
-        myScrollView.bounces = false
-        myScrollView.showsHorizontalScrollIndicator = false
-
-
-//        topImageUrls.append("https://pic1.zhimg.com/v2-dd9d1e1cb60a8adf2e08d31e7013f9c8.jpg")
-//        topImageUrls.append("https://pic2.zhimg.com/v2-4d10462c1b5a41fa7472adeaecaa8289.jpg")
-//        topImageUrls.append("https://pic1.zhimg.com/v2-b13881c1087866d37a625ce86d59c1b4.jpg")
-        
-        
-        myScrollView.contentSize = CGSize(width: topImageUrls.count * Int(UIScreen.main.bounds.width), height: Int(UIScreen.main.bounds.width))
-        if topImageUrls.count != 0 {
-            
-            for i in 0...topImageUrls.count-1 {
-                let thisPosition = view.frame.width * CGFloat(i)
-                positionArray.append(thisPosition)
-                let thisButton = UIButton(frame: CGRect(x: positionArray[i], y: 0, width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.width))
-                thisButton.imageView?.sd_setImage(with: URL(string: topImageUrls[i]), placeholderImage: UIImage(named: "placeholder\(i).jpg"))
-                myScrollView.addSubview(thisButton)
-
-        }
-            
-            
-    }else {
-        }
-    }
 }
 // MARK: -cell push
 extension ViewController: UITableViewDelegate {
@@ -256,10 +250,15 @@ extension ViewController: UITableViewDelegate {
     }
 
 }
-//extension ViewController: UIScrollViewDelegate {
-//
-//}
 
+//MARK: ScrollView设置
+
+extension ViewController: UIScrollViewDelegate {
+    func picDidScroll(_ scrollView: UIScrollView) {
+        
+        
+    }
+}
 
 
 
