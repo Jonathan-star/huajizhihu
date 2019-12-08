@@ -19,6 +19,11 @@ var topTitles = [String]()
 var topImageUrls = [String]()
 var topHints = [String]()
 var topStoryUrls = [String]()
+var topImages = [UIImage]()
+var imageArray = [UIImage]()
+var positionArray = [CGFloat]()
+var titleArray = [String]()
+
 
 
 
@@ -37,8 +42,10 @@ class ViewController: UIViewController {
 
     var tableView = UITableView()
     
-    let pics = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 500))
-
+    let pics = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
+    
+    let myScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
+ 
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -117,6 +124,7 @@ class ViewController: UIViewController {
         loadSubtitle()
         loadNewsImage()
         loadScrollView()
+        loadScrollView()
         tableView.reloadData()
         print(imageUrls)
         
@@ -136,6 +144,7 @@ class ViewController: UIViewController {
             print("ok")
         }
     }
+    
     func loadSubtitle() {
         alama.alamofireGet{ hints in
             print(hints)
@@ -147,6 +156,7 @@ class ViewController: UIViewController {
             print("ok")
         }
     }
+    
     func loadNewsImage() {
         alama.alamofireGet { imageUrls in
             
@@ -156,29 +166,6 @@ class ViewController: UIViewController {
     }
     
     
-//    MARK: -scrollView设置
-//    let pic1 =
-    
-    
-    func loadScrollView() {
-        pics.isPagingEnabled = false
-        pics.isScrollEnabled = true
-        pics.bounces = false
-        pics.contentSize = CGSize(width: UIScreen.main.bounds.width * 5, height: 500)
-        pics.delegate = self
-        pics.minimumZoomScale = 0.1
-        pics.maximumZoomScale = 4
-        pics.bouncesZoom = false
-        pics.indicatorStyle = UIScrollView.IndicatorStyle.white
-        pics.showsVerticalScrollIndicator = false
-        pics.showsHorizontalScrollIndicator = false
-        pics.backgroundColor = .white
-
-//        pics.addSubview()
-
-        pics.showsVerticalScrollIndicator = false
-        pics.showsHorizontalScrollIndicator = false
-    }
 }
     
 
@@ -200,11 +187,6 @@ extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
         cell.textLabel?.textColor = .black
         cell.textLabel?.numberOfLines = 0
         
-//        cell.textLabel?.snp.makeConstraints { make in
-//            make.left.equalTo((cell.imageView?.snp.right)!).offset(20)
-//            make.centerY.equalToSuperview().offset(70)
-//
-//        }
         cell.detailTextLabel?.text = hints[indexPath.row]
         cell.detailTextLabel?.font = .boldSystemFont(ofSize: 12)
         cell.detailTextLabel?.textColor = .darkGray
@@ -215,11 +197,11 @@ extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
 //            make.right.equalTo(20)
 //            make.bottom.equalToSuperview().offset(120)
         }
+        
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         cell.imageView?.sd_setImage(with: URL(string: imageUrls[indexPath.row][0]), placeholderImage: UIImage(named: "placeholder.png"))
         cell.imageView?.layer.cornerRadius = 20
         cell.imageView?.layer.masksToBounds = true
-        
         cell.imageView?.snp.updateConstraints { make in
 //            make.right.equalTo((cell.textLabel?.snp.right)!).offset(15)
             make.width.height.equalTo(120)
@@ -232,6 +214,36 @@ extension ViewController: UITableViewDataSource, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    //    MARK: -scrollView设置
+    //
+    func loadScrollView() {
+        myScrollView.contentSize.width = myScrollView.frame.width * CGFloat(imageArray.count)
+        myScrollView.isPagingEnabled = true
+        myScrollView.bounces = false
+        myScrollView.showsHorizontalScrollIndicator = false
+
+
+//        topImageUrls.append("https://pic1.zhimg.com/v2-dd9d1e1cb60a8adf2e08d31e7013f9c8.jpg")
+//        topImageUrls.append("https://pic2.zhimg.com/v2-4d10462c1b5a41fa7472adeaecaa8289.jpg")
+//        topImageUrls.append("https://pic1.zhimg.com/v2-b13881c1087866d37a625ce86d59c1b4.jpg")
+        
+        
+        myScrollView.contentSize = CGSize(width: topImageUrls.count * Int(UIScreen.main.bounds.width), height: Int(UIScreen.main.bounds.width))
+        if topImageUrls.count != 0 {
+            
+            for i in 0...topImageUrls.count-1 {
+                let thisPosition = view.frame.width * CGFloat(i)
+                positionArray.append(thisPosition)
+                let thisButton = UIButton(frame: CGRect(x: positionArray[i], y: 0, width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.width))
+                thisButton.imageView?.sd_setImage(with: URL(string: topImageUrls[i]), placeholderImage: UIImage(named: "placeholder\(i).jpg"))
+                myScrollView.addSubview(thisButton)
+
+        }
+            
+            
+    }else {
+        }
     }
 }
 // MARK: -cell push

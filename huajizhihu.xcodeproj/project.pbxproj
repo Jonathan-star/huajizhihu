@@ -16,6 +16,7 @@
 		2B1CC9A52382C53E00627507 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B1CC9A32382C53E00627507 /* LaunchScreen.storyboard */; };
 		2B4C7A7B238E467700C1501B /* AFdecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C7A7A238E467700C1501B /* AFdecode.swift */; };
 		2B50443E238C139200571F17 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50443D238C139200571F17 /* Comments.swift */; };
+		2B77309E239BFD120028506E /* AFDecodeOfComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B77309D239BFD120028506E /* AFDecodeOfComment.swift */; };
 		2B8BF5B523962589002745F6 /* webViewNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8BF5B423962589002745F6 /* webViewNews.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		2B1CC9A62382C53E00627507 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B4C7A7A238E467700C1501B /* AFdecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFdecode.swift; sourceTree = "<group>"; };
 		2B50443D238C139200571F17 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		2B77309D239BFD120028506E /* AFDecodeOfComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFDecodeOfComment.swift; sourceTree = "<group>"; };
 		2B8BF5B423962589002745F6 /* webViewNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webViewNews.swift; sourceTree = "<group>"; };
 		57B2400E0325E4D883392EF6 /* Pods-huajizhihu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huajizhihu.debug.xcconfig"; path = "Target Support Files/Pods-huajizhihu/Pods-huajizhihu.debug.xcconfig"; sourceTree = "<group>"; };
 		9FA30A7657FCF032FDB6758D /* Pods-huajizhihu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huajizhihu.release.xcconfig"; path = "Target Support Files/Pods-huajizhihu/Pods-huajizhihu.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				2B8BF5B423962589002745F6 /* webViewNews.swift */,
 				2B50443D238C139200571F17 /* Comments.swift */,
 				2B4C7A7A238E467700C1501B /* AFdecode.swift */,
+				2B77309D239BFD120028506E /* AFDecodeOfComment.swift */,
 			);
 			path = huajizhihu;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B77309E239BFD120028506E /* AFDecodeOfComment.swift in Sources */,
 				2B1CC99D2382C53B00627507 /* ViewController.swift in Sources */,
 				2B1CC9992382C53B00627507 /* AppDelegate.swift in Sources */,
 				2B4C7A7B238E467700C1501B /* AFdecode.swift in Sources */,
